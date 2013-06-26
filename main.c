@@ -2,18 +2,20 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "main.h"
 
 
+/*
 struct transaction {
 	float price;
 	char name[10];
 	struct transaction *next;
 } ;
+*/
 
-
-float get_sum(struct transaction *t, int length);
-struct transaction get_max_t (struct transaction *t, int length);
-void traverse_list (struct transaction *thead);
+//float get_sum(struct transaction *t, int length);
+//struct transaction get_max_t (struct transaction *t, int length);
+//void traverse_list (struct transaction *thead);
 
 int main (int argc, char *argv[])
 {
@@ -77,9 +79,22 @@ void traverse_list (struct transaction *thead)
 		printf("Transaction: %f\n", current->price);
 		current=current->next;
 	}
+}
 
-	
-
+int add_trans(struct transaction *ttail, char * name, float price)
+{
+	struct transaction * new_t = malloc(sizeof(struct transaction));
+	strcpy(new_t->name, name);
+	new_t->price = price;
+	new_t->next = NULL;
+	if(ttail){
+		ttail->next = new_t;
+		ttail = new_t;
+		return 1;
+	}
+	else
+		ttail = new_t;
+	return 1;
 }
 
 

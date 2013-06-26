@@ -5,18 +5,6 @@
 #include "main.h"
 
 
-/*
-struct transaction {
-	float price;
-	char name[10];
-	struct transaction *next;
-} ;
-*/
-
-//float get_sum(struct transaction *t, int length);
-//struct transaction get_max_t (struct transaction *t, int length);
-//void traverse_list (struct transaction *thead);
-
 int main (int argc, char *argv[])
 {
 	// Array version
@@ -41,6 +29,9 @@ int main (int argc, char *argv[])
 	strcpy(temp->name, "T2");
 	temp->next = temp2;
 	temp2->next = NULL;
+	char tempchar[5] = "test";
+	float pricetemp = 45.5;
+	add_trans(temp2, tempchar, pricetemp);
 	traverse_list(thead);
 	return 0;
 }

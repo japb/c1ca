@@ -2,9 +2,9 @@ struct transaction {
   float price;
   char name[10];
   struct transaction *next;
-} ;
+} *thead, *ttail;
 	
-float get_sum(struct transaction *t, int);
-struct transaction get_max_t (struct transaction *, int);
-void traverse_list(struct transaction *);
-int add_trans(struct transaction *, char *, float);
+float get_sum();
+struct  transaction *get_max_t();
+void traverse_list();
+int add_trans(char *, float);

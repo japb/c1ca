@@ -1,3 +1,5 @@
+#include "search.h"
+
 struct transaction {
   float price;
   char name[10];

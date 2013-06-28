@@ -8,11 +8,13 @@
 int main (int argc, char *argv[])
 {
 	// Linked List version
-		add_trans("BK", 55.5);
-		add_trans("Wal", 45.5);
-		add_trans("McD", 35.5);
-	
+	add_trans("T1", 55.5);
+	add_trans("T2", 45.5);
+	add_trans("T3", 65.5);
 	traverse_list();
+	printf("sum: %f\n", get_sum());
+	printf("max: %f\n", get_max_t()->price);
+	printf("T1 total: %f\n", priceTrans("T1"));
 	return 0;
 }
 
@@ -31,7 +33,6 @@ float get_sum()
 /*This function returns the maximum transaction*/
 struct  transaction * get_max_t ()
 {
-	//int i;
 	struct transaction *current = thead;	
 	struct transaction *max_t = thead;
 	while (current) {
@@ -42,6 +43,8 @@ struct  transaction * get_max_t ()
 	return max_t;
 }
 
+/* Traverses the linked list and prints out the name and 
+price of each transaction*/
 void traverse_list ()
 {
 	struct transaction *current = thead;	
@@ -50,6 +53,8 @@ void traverse_list ()
 		current=current->next;
 	}
 }
+
+/*Adds a transaction to the end of the linked list*/
 
 int add_trans(char * name, float price)
 {

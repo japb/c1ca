@@ -5,13 +5,15 @@
 // "Find all transcation placed during this time"   
 // let's do the first one
 // I guess I do not know to link two different c files:w
-
+#include <string.h>
 #include "main.h"
+
+/*This function returns the price given the name of the transaction*/
 
 float priceTrans(char * trans)
 {
 	float price = 0;
-	struct transcation *current = thead;
+	struct transaction *current = thead;
 	while (current){
 		if (!strcmp(trans, current->name))
 			price += current->price;

@@ -14,7 +14,7 @@ int main (int argc, char *argv[])
 	traverse_list();
 	printf("sum: %f\n", get_sum());
 	printf("max: %f\n", get_max_t()->price);
-	printf("T1 total: %f\n", priceTrans("T1"));
+	printf("T2 total: %f\n", priceTrans("T2"));
 	return 0;
 }
 

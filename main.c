@@ -7,6 +7,18 @@
 
 int main (int argc, char *argv[])
 {
+
+	FILE *fr;
+	fr = fopen("testfile.csv", "rt");
+	char *line2;
+	char line[80];
+	while(fgets(line, 80, fr) != NULL){ 
+		sscanf (line, "%s", line2);
+		printf("%s\n", line2);
+
+	}
+	
+
 	// Linked List version
 	add_trans("T1", 55.5);
 	add_trans("T2", 45.5);
@@ -74,5 +86,7 @@ int add_trans(char * name, float price)
 		return 1;
 	}
 }
+
+
 
 

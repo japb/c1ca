@@ -12,6 +12,7 @@ int main (int argc, char *argv[])
 	fr = fopen("testfile.csv", "r");
 	char line[200];
 	char *line2;
+	fgets(line, 200, fr);
 	while(fgets(line, 200, fr) != NULL){ 
 		int i =0;
 		line2 = strtok(line, ",\"");
@@ -21,11 +22,13 @@ int main (int argc, char *argv[])
 			printf("%d:%s\n", i, line2);
 			if (i<3)
 				line2 = strtok(NULL, "\",");
-			else{
+			else {
 				char *line3;
 				line3 = line2;
 				//printf("line3: %s", line3);
-				line2 = strtok(NULL, ",");
+				line2 = strtok(NULL, "\n");
+				if(line2)
+					printf("line2a:%s%c\n", line2, line2[2]);/*
 				if(line2 && !strcmp(line2, "\"\"")){
 					//printf("found a \"");
 					i++;
@@ -46,7 +49,7 @@ int main (int argc, char *argv[])
 					//line2 = strtok(NULL, "\",");
 					//printf("line2a: %s", line2);
 					//line2 = line3;
-				//}	
+				//}	*/
 			}
 			i++;
 		}

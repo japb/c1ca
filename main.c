@@ -9,12 +9,48 @@ int main (int argc, char *argv[])
 {
 
 	FILE *fr;
-	fr = fopen("testfile.csv", "rt");
+	fr = fopen("testfile.csv", "r");
+	char line[200];
 	char *line2;
-	char line[80];
-	while(fgets(line, 80, fr) != NULL){ 
-		sscanf (line, "%s", line2);
-		printf("%s\n", line2);
+	while(fgets(line, 200, fr) != NULL){ 
+		int i =0;
+		line2 = strtok(line, ",\"");
+		i++;
+		//printf("%s", line);
+		while (line2 !=NULL){
+			printf("%d:%s\n", i, line2);
+			if (i<3)
+				line2 = strtok(NULL, "\",");
+			else{
+				char *line3;
+				line3 = line2;
+				//printf("line3: %s", line3);
+				line2 = strtok(NULL, ",");
+				if(line2 && !strcmp(line2, "\"\"")){
+					//printf("found a \"");
+					i++;
+					line2 = line3; //go back
+					line2 = strtok(NULL, ",\"");
+					//line2 = line3; //go back again
+				}
+				else if(line2){
+					line2=line3;
+					printf("line: %s", line2);
+					line2 = strtok(NULL, ",\"");
+					printf("line2b: %s", line2);
+				}
+				//else if(line2){
+					//line2 = line3;	
+					//line2 = strtok(NULL, "\",");
+				//else
+					//line2 = strtok(NULL, "\",");
+					//printf("line2a: %s", line2);
+					//line2 = line3;
+				//}	
+			}
+			i++;
+		}
+		//sscanf (line, "%s", line2);
 
 	}
 	

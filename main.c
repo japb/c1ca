@@ -7,7 +7,8 @@
 
 int main (int argc, char *argv[])
 {
-
+	float currentprice;
+	char current_t[80];
 	FILE *fr;
 	fr = fopen("testfile.csv", "r");
 	char line[200];
@@ -17,46 +18,27 @@ int main (int argc, char *argv[])
 		int i =0;
 		line2 = strtok(line, ",\"");
 		i++;
-		//printf("%s", line);
 		while (line2 !=NULL){
+			if (i==3) strncpy(current_t, line2, sizeof(current_t));
+			if (i==4||i==5) currentprice = atof(line2);
 			printf("%d:%s\n", i, line2);
 			if (i<3)
 				line2 = strtok(NULL, "\",");
 			else {
-				char *line3;
-				line3 = line2;
-				//printf("line3: %s", line3);
 				line2 = strtok(NULL, "\n");
-				if(line2)
-					printf("line2a:%s%c\n", line2, line2[2]);/*
-				if(line2 && !strcmp(line2, "\"\"")){
-					//printf("found a \"");
-					i++;
-					line2 = line3; //go back
-					line2 = strtok(NULL, ",\"");
-					//line2 = line3; //go back again
+				if(line2){
+					if (line2[2] == '"'){
+						i++;
+					}
+				line2 = strtok(line2, ",\"\n");
 				}
-				else if(line2){
-					line2=line3;
-					printf("line: %s", line2);
-					line2 = strtok(NULL, ",\"");
-					printf("line2b: %s", line2);
-				}
-				//else if(line2){
-					//line2 = line3;	
-					//line2 = strtok(NULL, "\",");
-				//else
-					//line2 = strtok(NULL, "\",");
-					//printf("line2a: %s", line2);
-					//line2 = line3;
-				//}	*/
 			}
 			i++;
 		}
-		//sscanf (line, "%s", line2);
+		printf("adding transcation:%s with price %.2f\n", current_t, currentprice);
 
+		add_trans(current_t, currentprice);
 	}
-	
 
 	// Linked List version
 	add_trans("T1", 55.5);
@@ -65,6 +47,7 @@ int main (int argc, char *argv[])
 	traverse_list();
 	printf("sum: %f\n", get_sum());
 	printf("max: %f\n", get_max_t()->price);
+	//this is bugged still
 	printf("T2 total: %f\n", priceTrans("T2"));
 	return 0;
 }

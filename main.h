@@ -2,7 +2,7 @@
 
 struct transaction {
   float price;
-  char name[10];
+  char name[80];
   struct transaction *next;
 } *thead, *ttail;
 	

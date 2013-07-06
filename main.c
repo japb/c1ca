@@ -49,6 +49,7 @@ int main (int argc, char *argv[])
 	printf("max: %f\n", get_max_t()->price);
 	//this is bugged still
 	printf("T2 total: %f\n", priceTrans("T2"));
+	printf("MARQUIS CINEMA 10 CRESTVIEW FL total: %f\n", priceTrans("MARQUIS CINEMA 10 CRESTVIEW FL"));
 	return 0;
 }
 

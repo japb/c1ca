@@ -16,6 +16,7 @@ int main (int argc, char *argv[])
 	fgets(line, 200, fr);
 	while(fgets(line, 200, fr) != NULL){ 
 		int i =0;
+		int type=0;
 		line2 = strtok(line, ",\"");
 		i++;
 		while (line2 !=NULL){
@@ -29,26 +30,29 @@ int main (int argc, char *argv[])
 				if(line2){
 					if (line2[2] == '"'){
 						i++;
+						if (i==5) type = 1;
 					}
 				line2 = strtok(line2, ",\"\n");
 				}
 			}
 			i++;
 		}
-		printf("adding transcation:%s with price %.2f\n", current_t, currentprice);
+		printf("adding transcation:%s with price %.2f t=%d\n", current_t, currentprice, type);
 
-		add_trans(current_t, currentprice);
+		add_trans(current_t, currentprice, type);
 	}
 
 	// Linked List version
+	/* Test transcations
 	add_trans("T1", 55.5);
 	add_trans("T2", 45.5);
 	add_trans("T3", 65.5);
+	*/
 	traverse_list();
 	printf("sum: %f\n", get_sum());
 	printf("max: %f\n", get_max_t()->price);
 	//this is bugged still
-	printf("T2 total: %f\n", priceTrans("T2"));
+	//printf("T2 total: %f\n", priceTrans("T2"));
 	printf("MARQUIS CINEMA 10 CRESTVIEW FL total: %f\n", priceTrans("MARQUIS CINEMA 10 CRESTVIEW FL"));
 	return 0;
 }
@@ -83,20 +87,22 @@ price of each transaction*/
 void traverse_list ()
 {
 	struct transaction *current = thead;	
+	
 	while (current) {
-		printf("Transaction: %s, Price: %.2f\n", current->name, current->price);
+		printf("Transaction: %s, Price: %.2f, Type:%d\n", current->name, current->price, current->type);
 		current=current->next;
 	}
 }
 
 /*Adds a transaction to the end of the linked list*/
 
-int add_trans(char * name, float price)
+int add_trans(char * name, float price, int type)
 {
 	struct transaction * new_t = malloc(sizeof(struct transaction));
 	if (!new_t) return 0;
 	strcpy(new_t->name, name);
 	new_t->price = price;
+	new_t->type = type;
 	new_t->next = NULL;
 	if (!thead) {
 		thead = new_t;

@@ -10,6 +10,7 @@ int main (int argc, char *argv[])
 	float currentprice;
 	char current_t[80];
 	FILE *fr;
+	int debug =0;
 	fr = fopen("testfile.csv", "r");
 	char line[200];
 	char *line2;
@@ -22,7 +23,8 @@ int main (int argc, char *argv[])
 		while (line2 !=NULL){
 			if (i==3) strncpy(current_t, line2, sizeof(current_t));
 			if (i==4||i==5) currentprice = atof(line2);
-			printf("%d:%s\n", i, line2);
+			if(debug)
+				printf("%d:%s\n", i, line2);
 			if (i<3)
 				line2 = strtok(NULL, "\",");
 			else {
@@ -37,7 +39,8 @@ int main (int argc, char *argv[])
 			}
 			i++;
 		}
-		printf("adding transcation:%s with price %.2f t=%d\n", current_t, currentprice, type);
+		if (debug)
+			printf("adding transcation:%s with price %.2f t=%d\n", current_t, currentprice, type);
 
 		add_trans(current_t, currentprice, type);
 	}
@@ -89,7 +92,12 @@ void traverse_list ()
 	struct transaction *current = thead;	
 	
 	while (current) {
-		printf("Transaction: %s, Price: %.2f, Type:%d\n", current->name, current->price, current->type);
+		if (current->type)
+			printf("Purchase: ");
+		else
+			printf("Payment: ");
+//		printf(": %s",)
+		printf("%s Price: %.2f \n", current->name, current->price);
 		current=current->next;
 	}
 }

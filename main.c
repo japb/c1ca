@@ -7,10 +7,13 @@
 
 int main (int argc, char *argv[])
 {
+//	printf("%s\n", argv[1]);
+	int debug =0;
+	if (argc > 1)
+		if (!strcmp("-d", argv[1])) debug = 1;
 	float currentprice;
 	char current_t[80];
 	FILE *fr;
-	int debug =0;
 	fr = fopen("testfile.csv", "r");
 	char line[200];
 	char *line2;

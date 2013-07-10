@@ -56,7 +56,7 @@ int main (int argc, char *argv[])
 	*/
 	traverse_list();
 	printf("sum: %f\n", get_sum());
-	printf("max: %f\n", get_max_t()->price);
+	printf("max: %f at %s\n", get_max_t()->price, get_max_t()->name);
 	//this is bugged still
 	//printf("T2 total: %f\n", priceTrans("T2"));
 	printf("MARQUIS CINEMA 10 CRESTVIEW FL total: %f\n", priceTrans("MARQUIS CINEMA 10 CRESTVIEW FL"));
@@ -81,7 +81,7 @@ struct  transaction * get_max_t ()
 	struct transaction *current = thead;	
 	struct transaction *max_t = thead;
 	while (current) {
-		if (current->price > max_t->price)
+		if (current->price > max_t->price && current->type )
 			max_t = current;
 		current = current->next;
 	}

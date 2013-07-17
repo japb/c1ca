@@ -11,6 +11,9 @@ int main (int argc, char *argv[])
 	int debug =0;
 	if (argc > 1)
 		if (!strcmp("-d", argv[1])) debug = 1;
+	//char str[1];
+	//gets(str)
+	//if str == '
 	float currentprice;
 	char current_t[80];
 	FILE *fr;
@@ -55,8 +58,8 @@ int main (int argc, char *argv[])
 	add_trans("T3", 65.5);
 	*/
 	traverse_list();
-	printf("sum: %f\n", get_sum());
-	printf("max: %f at %s\n", get_max_t()->price, get_max_t()->name);
+	printf("Total Purchases: %f\n", get_sum());
+	printf("Max Purchase: %f at %s\n", get_max_t()->price, get_max_t()->name);
 	//this is bugged still
 	//printf("T2 total: %f\n", priceTrans("T2"));
 	printf("MARQUIS CINEMA 10 CRESTVIEW FL total: %f\n", priceTrans("MARQUIS CINEMA 10 CRESTVIEW FL"));
@@ -69,7 +72,8 @@ float get_sum()
 	struct transaction *current = thead;	
 	float sum = 0.0;
 	while (current) {
-		sum += current->price;
+		if (current->type)
+			sum += current->price;
 		current = current->next;
 	}
 	return sum	;

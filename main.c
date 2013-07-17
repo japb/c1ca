@@ -58,11 +58,11 @@ int main (int argc, char *argv[])
 	add_trans("T3", 65.5);
 	*/
 	traverse_list();
-	printf("Total Purchases: %f\n", get_sum());
-	printf("Max Purchase: %f at %s\n", get_max_t()->price, get_max_t()->name);
+	printf("Total Purchase Price: %0.2f\n", get_sum());
+	printf("Max Purchase Price: %0.2f at %s\n", get_max_t()->price, get_max_t()->name);
 	//this is bugged still
 	//printf("T2 total: %f\n", priceTrans("T2"));
-	printf("MARQUIS CINEMA 10 CRESTVIEW FL total: %f\n", priceTrans("MARQUIS CINEMA 10 CRESTVIEW FL"));
+	printf("MARQUIS CINEMA 10 CRESTVIEW FL total: %0.2f\n", priceTrans("MARQUIS CINEMA 10 CRESTVIEW FL"));
 	return 0;
 }
 
